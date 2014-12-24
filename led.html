@@ -1,0 +1,55 @@
+<script src="jquery.js"></script>
+
+<script type="text/javascript" language="javascript">
+$.ajaxSetup({ cache: false });
+var wordID = 0;
+
+
+function addWord(id) {
+	$('#textbox').append('<input type="text" id="text' + wordID + '"><br>');
+	$('#text' + wordID).val($('#text' + wordID).val());
+	$('#text' + wordID).attr('colorcode', $('#' + id).attr('colorcode'));
+	$('#text' + wordID).css('color', $('#' + id).css('background-color'));
+	
+	wordID++;
+}
+
+function send() {
+	var sendString = '(';
+	
+	for (i = 0; i < wordID; i++) { 
+	
+		if (i != 0) {
+			sendString += '), ';
+		}
+	
+		sendString += '(';
+		
+		sendString += "\'" + $('#text' + i).val() + " \'," +  $('#text' + i).attr('colorcode');	
+	}
+	
+	sendString += "),(\'\', " +  "(0,0,0))";	
+	sendString += ')';
+	console.log(sendString);
+	
+	$.getJSON('led.php/?string=' + sendString, function (json) {
+		
+	})
+}
+</script>
+</head>
+
+<body>
+<div id="textbox">
+</div>
+
+<input id="red" type="submit" value="+" colorcode="(255,0,0)" onclick="addWord(this.id)" style="background-color:#ff0000;">
+<input id="green" type="submit" value="+" colorcode="(0,255,0)" onclick="addWord(this.id)" style="background-color:#00ff00;">
+<input id="blue" type="submit" value="+" colorcode="(0,0,255)" onclick="addWord(this.id)" style="background-color:#0000ff;">
+
+
+<br>
+
+<input type="submit" value="Display!" onclick="send()">
+
+</body>
