@@ -16,9 +16,16 @@ Installing:
 
 Disclaimer:
 
-This piece of software does not care about security, hardware safety or something it might could break. It's  kind of early pre alpha - first idea version.
+	This piece of software does not care about security, hardware safety or something it might could break. It's  kind of early pre alpha - first idea version.
 
 
 greets, nougatbyte & aPollO2k
 
 
+
+TODO:
+
+	- GET request -> POST request
+	- transmit postdata as json + decode in backend
+	- add php function for writing p6 files (getting rid of the python script)
+	- support for single letters in different colors
